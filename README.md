@@ -1,4 +1,5 @@
-# Learn_JWT_springboot
+# jwt_springboot
+
 Learn more about JWT - how JWT works in spring_boot
 
 + Bắt đầu với file WebSecurityConfig. Nơi mình sẽ khai báo các webservice nào bắt buộc phải login và cái nào không. Đồng thời
@@ -10,7 +11,7 @@ mình nhúng JwtAuthenticationEntryPoint và jwtRequestFilter vào sử dụng
 JwtTokenUtil có nhiệm vụ sinh ra token dự vào key mình cung cấp trong file application.properties
 
 
-**** JSON WEB TOKEN *** 
+## **** JSON WEB TOKEN *** 
 1. Vì sao chúng ta cần Jwt ?
 -- Lấy ví dụ về mua hàng online trên mạng và thanh toán tiền qua thẻ visa hoặc master. Khi các em thanh toán qua một ứng dụng trung gian để mua sản phẩm thì ứng dụng trung gian sẽ yêu cầu các em nhập vào số thẻ và mã cvv. Như các em thấy nếu thông tin này không bị mã hoá trước khi truyền đi trên mạng. Hacker hoàn toàn có thể lấy được thông tin về số thẻ và mã cvv của mình. Nếu có được 2 thông tin này hacker hoàn toàn có thể lấy hết số tiền trong thẻ hoặc sẽ dùng thông tin đó đi mua hàng .Như vậy rất nguy hiểm khi thông tin chúng ta truyền trên mạng mà không được bảo mật hay nói cách khác là thông tin chúng ta không được mã hoá an toàn sẽ dẫn đến rất nhiều hệ luỵ sau này.
 Hoặc chúng ta sử dụng session và cookie để lưu thông tin cho những ứng dụng web. Nhưng nếu ứng dụng của ta là mobile thì không có session và cookie. Mà thay vào đó là dùng JWT
