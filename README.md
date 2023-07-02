@@ -1,6 +1,6 @@
 # jwt_springboot
 
-Learn more about JWT - how JWT works in spring_boot
+About JWT - how JWT works in spring_boot
 
 + Bắt đầu với file WebSecurityConfig. Nơi mình sẽ khai báo các webservice nào bắt buộc phải login và cái nào không. Đồng thời
 mình nhúng JwtAuthenticationEntryPoint và jwtRequestFilter vào sử dụng
@@ -11,22 +11,22 @@ mình nhúng JwtAuthenticationEntryPoint và jwtRequestFilter vào sử dụng
 JwtTokenUtil có nhiệm vụ sinh ra token dự vào key mình cung cấp trong file application.properties
 
 
-## **** JSON WEB TOKEN *** 
-1. Vì sao chúng ta cần Jwt ?
--- Lấy ví dụ về mua hàng online trên mạng và thanh toán tiền qua thẻ visa hoặc master. Khi các em thanh toán qua một ứng dụng trung gian để mua sản phẩm thì ứng dụng trung gian sẽ yêu cầu các em nhập vào số thẻ và mã cvv. Như các em thấy nếu thông tin này không bị mã hoá trước khi truyền đi trên mạng. Hacker hoàn toàn có thể lấy được thông tin về số thẻ và mã cvv của mình. Nếu có được 2 thông tin này hacker hoàn toàn có thể lấy hết số tiền trong thẻ hoặc sẽ dùng thông tin đó đi mua hàng .Như vậy rất nguy hiểm khi thông tin chúng ta truyền trên mạng mà không được bảo mật hay nói cách khác là thông tin chúng ta không được mã hoá an toàn sẽ dẫn đến rất nhiều hệ luỵ sau này.
+## JSON WEB TOKEN 
+1. Vì sao chúng ta cần Jwt ?<br>
+- Lấy ví dụ về mua hàng online trên mạng và thanh toán tiền qua thẻ visa hoặc master. Khi các em thanh toán qua một ứng dụng trung gian để mua sản phẩm thì ứng dụng trung gian sẽ yêu cầu các em nhập vào số thẻ và mã cvv. Như các em thấy nếu thông tin này không bị mã hoá trước khi truyền đi trên mạng. Hacker hoàn toàn có thể lấy được thông tin về số thẻ và mã cvv của mình. Nếu có được 2 thông tin này hacker hoàn toàn có thể lấy hết số tiền trong thẻ hoặc sẽ dùng thông tin đó đi mua hàng .Như vậy rất nguy hiểm khi thông tin chúng ta truyền trên mạng mà không được bảo mật hay nói cách khác là thông tin chúng ta không được mã hoá an toàn sẽ dẫn đến rất nhiều hệ luỵ sau này.
 Hoặc chúng ta sử dụng session và cookie để lưu thông tin cho những ứng dụng web. Nhưng nếu ứng dụng của ta là mobile thì không có session và cookie. Mà thay vào đó là dùng JWT
 
-2. JSON Web Token là gì ?
-JSON Web Token (JWT) là 1 tiêu chuẩn mở (RFC 7519) định nghĩa cách thức truyền tin an toàn giữa client và server bằng đối tượng JSON. Thông tin này có thể được xác thực và đánh dấu tin cậy nhờ vào “chữ ký” của nó. Phần chữ ký của JWT sẽ được mã hóa nhằm tránh các hacker có thể lấy nó thông qua mạng. Bằng các thuật toán mã hoá có tên gọi là HMAC hoặc các thuật toán mã hoá dữ liệu là RSA thì dữ liệu chúng ta sẽ được mã hoá trên mạng, hacker có lấy được cũng khó mà giải mã ra các dữ liệu. Như vậy mình sẽ yên tâm hơn vì các dữ liệu mình truyền đi đều đã được mã hoá.
+2. JSON Web Token là gì ?<br>
+- JSON Web Token (JWT) là 1 tiêu chuẩn mở (RFC 7519) định nghĩa cách thức truyền tin an toàn giữa client và server bằng đối tượng JSON. Thông tin này có thể được xác thực và đánh dấu tin cậy nhờ vào “chữ ký” của nó. Phần chữ ký của JWT sẽ được mã hóa nhằm tránh các hacker có thể lấy nó thông qua mạng. Bằng các thuật toán mã hoá có tên gọi là HMAC hoặc các thuật toán mã hoá dữ liệu là RSA thì dữ liệu chúng ta sẽ được mã hoá trên mạng, hacker có lấy được cũng khó mà giải mã ra các dữ liệu. Như vậy mình sẽ yên tâm hơn vì các dữ liệu mình truyền đi đều đã được mã hoá. 
 
-3. Cấu tạo của 1 JWT
+3. Cấu tạo của 1 JWT<br>
 JWT bao gồm 3 phần và ngăn cách nhau bởi dấu chấm :
    - Header
    - Payload
    - Signature (chữ ký số )
 
-Ví dụ sau đây là một token được sinh ra :
-    eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuZ3V5ZW4iLCJleHAiOjE1Njg3NTAxMTEsImlhdCI6MTU2ODczMjExMX0.mPuurljzpycuyy0d_B0GNVPBz7SEpPCPIoGGy2lUVgJ9rLlRJkDCdG2vwkXITUsJ4dnU5IF178yXv34izGPcpw
+Ví dụ sau đây là một token được sinh ra : <br>
+  ###  eyJhbGciOiJIUzUxMiJ9 . eyJzdWIiOiJuZ3V5ZW4iLCJleHAiOjE1Njg3NTAxMTEsImlhdCI6MTU2ODczMjExMX0 . mPuurljzpycuyy0d_B0GNVPBz7SEpPCPIoGGy2lUVgJ9rLlRJkDCdG2vwkXITUsJ4dnU5IF178yXv34izGPcpw
 
 Header là    : eyJhbGciOiJIUzUxMiJ9
 Payload là   : eyJzdWIiOiJuZ3V5ZW4iLCJleHAiOjE1Njg3NTAxMTEsImlhdCI6MTU2ODczMjExMX0
